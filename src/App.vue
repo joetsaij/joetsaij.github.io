@@ -76,12 +76,10 @@ export default {
     data: function () {
         const config = JSON.parse(localStorage.getItem('config'));
         return {
-            autoOrder: config.autoOrder || false, // 自製開關 component
-            autoTime: config.autoTime || 'everyday',
-            autoDays: config.autoDays || [], //checkbox必須要用 array 去接它，Vue會自動記錄已勾選的值
+            autoOrder: config && config.autoOrder || false, // 自製開關 component
+            autoTime: config && config.autoTime || 'everyday',
+            autoDays: config && config.autoDays || [], //checkbox必須要用 array 去接它，Vue會自動記錄已勾選的值
             message: '海南雞飯讚啦!',
-            priorities: ['High', 'Medium', 'Low'], // select options
-            isSubmit: false
         }
     },
     methods: {
@@ -92,13 +90,10 @@ export default {
                 autoDays: this.autoDays,
             };
             localStorage.setItem('config', JSON.stringify(config));
-            this.isSubmit = true;
         },
         reset: function () {
             this.autoTime = 'everyday';
             this.autoDays = [];
-
-            this.isSubmit = false;
         }
     },
     components: {
