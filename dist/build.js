@@ -586,100 +586,34 @@ module.exports = function normalizeComponent (
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({
     data: function () {
+        const config = JSON.parse(localStorage.getItem('config'));
         return {
-            autoTime: 'everyday',
-            autoDays: [],
-            userData: {
-                email: '',
-                password: '',
-                age: 41
-            },
-            message: 'A new text',
-            sendMail: [], //checkbox必須要用 array 去接它，Vue會自動記錄已勾選的值
-            gender: 'Male', // radio button
-            selectedPriority: 'High', // select 值
+            autoOrder: config.autoOrder || false, // 自製開關 component
+            autoTime: config.autoTime || 'everyday',
+            autoDays: config.autoDays || [], //checkbox必須要用 array 去接它，Vue會自動記錄已勾選的值
+            message: '海南雞飯讚啦!',
             priorities: ['High', 'Medium', 'Low'], // select options
-            dataSwitch: false, // 自製開關 component
             isSubmit: false
         };
     },
     methods: {
         submitted: function () {
-            // 也可以寫成 submitted() {}
+            const config = {
+                autoOrder: this.autoOrder,
+                autoTime: this.autoTime,
+                autoDays: this.autoDays
+            };
+            localStorage.setItem('config', JSON.stringify(config));
             this.isSubmit = true;
         },
         reset: function () {
-            this.userData.email = '';
-            this.userData.password = '';
-            this.userData.age = 41;
-
-            this.message = '';
-            this.sendMail = [];
-            this.gender = 'Male';
-            this.selectedPriority = '';
-            this.dataSwitch = 'On';
+            this.autoTime = 'everyday';
+            this.autoDays = [];
 
             this.isSubmit = false;
         }
@@ -13140,7 +13074,7 @@ process.umask = function() { return 0; };
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_App_vue__ = __webpack_require__(4);
 /* unused harmony namespace reexport */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_04703851_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_App_vue__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_59f20ff1_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_App_vue__ = __webpack_require__(19);
 function injectStyle (ssrContext) {
   __webpack_require__(12)
 }
@@ -13160,7 +13094,7 @@ var __vue_scopeId__ = null
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_App_vue__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_04703851_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_App_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_59f20ff1_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_App_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
@@ -13181,7 +13115,7 @@ var content = __webpack_require__(13);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(2)("6a7916e7", content, true, {});
+var update = __webpack_require__(2)("7ad2e1f4", content, true, {});
 
 /***/ }),
 /* 13 */
@@ -13309,8 +13243,8 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"container"},[_c('form',[_vm._m(0),_vm._v(" "),_c('div',{staticClass:"row"},[_c('div',{staticClass:"col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 form-group"},[_c('label',[_vm._v("是否啟用自動點餐")]),_c('br'),_vm._v(" "),_c('app-switch',{model:{value:(_vm.dataSwitch),callback:function ($$v) {_vm.dataSwitch=$$v},expression:"dataSwitch"}})],1)]),_vm._v(" "),(_vm.dataSwitch)?_c('div',[_c('div',{staticClass:"row"},[_c('div',{staticClass:"col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 form-group"},[_c('label',[_vm._v("自動點餐時間")]),_c('br'),_vm._v(" "),_c('label',{attrs:{"for":"male"}},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.autoTime),expression:"autoTime"}],attrs:{"type":"radio","id":"autoTimeEveryday","value":"everyday"},domProps:{"checked":_vm._q(_vm.autoTime,"everyday")},on:{"change":function($event){_vm.autoTime="everyday"}}}),_vm._v(" 每天\n                    ")]),_vm._v(" "),_c('label',{attrs:{"for":"female"}},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.autoTime),expression:"autoTime"}],attrs:{"type":"radio","id":"autoTimeCustom","value":"custom"},domProps:{"checked":_vm._q(_vm.autoTime,"custom")},on:{"change":function($event){_vm.autoTime="custom"}}}),_vm._v(" 自選\n                    ")])])]),_vm._v(" "),(_vm.autoTime === 'custom')?_c('div',{staticClass:"row"},[_c('div',{staticClass:"col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3"},[_c('div',{staticClass:"form-group"},[_c('label',{attrs:{"for":"mon"}},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.autoDays),expression:"autoDays"}],attrs:{"type":"checkbox","id":"mon","value":"mon"},domProps:{"checked":Array.isArray(_vm.autoDays)?_vm._i(_vm.autoDays,"mon")>-1:(_vm.autoDays)},on:{"change":function($event){var $$a=_vm.autoDays,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v="mon",$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.autoDays=$$a.concat([$$v]))}else{$$i>-1&&(_vm.autoDays=$$a.slice(0,$$i).concat($$a.slice($$i+1)))}}else{_vm.autoDays=$$c}}}}),_vm._v(" Mon\n                        ")]),_vm._v(" "),_c('label',{attrs:{"for":"tue"}},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.autoDays),expression:"autoDays"}],attrs:{"type":"checkbox","id":"tue","value":"tue"},domProps:{"checked":Array.isArray(_vm.autoDays)?_vm._i(_vm.autoDays,"tue")>-1:(_vm.autoDays)},on:{"change":function($event){var $$a=_vm.autoDays,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v="tue",$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.autoDays=$$a.concat([$$v]))}else{$$i>-1&&(_vm.autoDays=$$a.slice(0,$$i).concat($$a.slice($$i+1)))}}else{_vm.autoDays=$$c}}}}),_vm._v(" Tue\n                        ")]),_vm._v(" "),_c('label',{attrs:{"for":"wed"}},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.autoDays),expression:"autoDays"}],attrs:{"type":"checkbox","id":"wed","value":"wed"},domProps:{"checked":Array.isArray(_vm.autoDays)?_vm._i(_vm.autoDays,"wed")>-1:(_vm.autoDays)},on:{"change":function($event){var $$a=_vm.autoDays,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v="wed",$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.autoDays=$$a.concat([$$v]))}else{$$i>-1&&(_vm.autoDays=$$a.slice(0,$$i).concat($$a.slice($$i+1)))}}else{_vm.autoDays=$$c}}}}),_vm._v(" Wed\n                        ")]),_vm._v(" "),_c('label',{attrs:{"for":"thu"}},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.autoDays),expression:"autoDays"}],attrs:{"type":"checkbox","id":"thu","value":"thu"},domProps:{"checked":Array.isArray(_vm.autoDays)?_vm._i(_vm.autoDays,"thu")>-1:(_vm.autoDays)},on:{"change":function($event){var $$a=_vm.autoDays,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v="thu",$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.autoDays=$$a.concat([$$v]))}else{$$i>-1&&(_vm.autoDays=$$a.slice(0,$$i).concat($$a.slice($$i+1)))}}else{_vm.autoDays=$$c}}}}),_vm._v(" Thu\n                        ")]),_vm._v(" "),_c('label',{attrs:{"for":"fri"}},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.autoDays),expression:"autoDays"}],attrs:{"type":"checkbox","id":"fri","value":"fri"},domProps:{"checked":Array.isArray(_vm.autoDays)?_vm._i(_vm.autoDays,"fri")>-1:(_vm.autoDays)},on:{"change":function($event){var $$a=_vm.autoDays,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v="fri",$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.autoDays=$$a.concat([$$v]))}else{$$i>-1&&(_vm.autoDays=$$a.slice(0,$$i).concat($$a.slice($$i+1)))}}else{_vm.autoDays=$$c}}}}),_vm._v(" Fri\n                        ")])])])]):_vm._e(),_vm._v(" "),_c('div',{staticClass:"row"},[_c('div',{staticClass:"col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 form-group"},[_c('label',{attrs:{"for":"message"}},[_vm._v("Message")]),_c('br'),_vm._v(" "),_c('textarea',{directives:[{name:"model",rawName:"v-model",value:(_vm.message),expression:"message"}],staticClass:"form-control",attrs:{"id":"message","rows":"5"},domProps:{"value":(_vm.message)},on:{"input":function($event){if($event.target.composing){ return; }_vm.message=$event.target.value}}})])]),_vm._v(" "),(0)?_c('div',{staticClass:"row"},[_c('div',{staticClass:"col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 from-group"},[_c('label',{attrs:{"for":"priority"}},[_vm._v("Priority")]),_vm._v(" "),_c('select',{directives:[{name:"model",rawName:"v-model",value:(_vm.selectedPriority),expression:"selectedPriority"}],staticClass:"form-control",attrs:{"id":"priority"},on:{"change":function($event){var $$selectedVal = Array.prototype.filter.call($event.target.options,function(o){return o.selected}).map(function(o){var val = "_value" in o ? o._value : o.value;return val}); _vm.selectedPriority=$event.target.multiple ? $$selectedVal : $$selectedVal[0]}}},_vm._l((_vm.priorities),function(priority,index){return _c('option',{key:index,domProps:{"selected":priority == 'Medium'}},[_vm._v("\n                            "+_vm._s(priority)+" ")])}),0)])]):_vm._e(),_vm._v(" "),_c('div',{staticClass:"row"},[_c('div',{staticClass:"col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3"},[_c('button',{staticClass:"btn btn-primary",on:{"click":function($event){$event.preventDefault();return _vm.submitted.apply(null, arguments)}}},[_vm._v("Submit!\n                        ")]),_vm._v(" "),_c('button',{staticClass:"btn btn-warning",on:{"click":function($event){$event.preventDefault();return _vm.reset.apply(null, arguments)}}},[_vm._v("Reset!\n                        ")])])]),_vm._v(" "),(0)?_c('div',{staticClass:"row"},[_c('div',{staticClass:"col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3"},[_c('div',{staticClass:"form-group"},[_c('label',{attrs:{"for":"email"}},[_vm._v("Mail")]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model.lazy",value:(_vm.userData.email),expression:"userData.email",modifiers:{"lazy":true}}],staticClass:"form-control",attrs:{"type":"text","id":"email"},domProps:{"value":(_vm.userData.email)},on:{"change":function($event){return _vm.$set(_vm.userData, "email", $event.target.value)}}}),_vm._v(" "),_c('input',{staticClass:"form-control",attrs:{"type":"text","id":"email"},domProps:{"value":_vm.userData.email},on:{"input":function($event){_vm.userData.email = $event.target.value}}})]),_vm._v(" "),_c('div',{staticClass:"form-group"},[_c('label',{attrs:{"for":"password"}},[_vm._v("Password")]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model.lazy",value:(_vm.userData.password),expression:"userData.password",modifiers:{"lazy":true}}],staticClass:"form-control",attrs:{"type":"password","id":"password"},domProps:{"value":(_vm.userData.password)},on:{"change":function($event){return _vm.$set(_vm.userData, "password", $event.target.value)}}})]),_vm._v(" "),_c('div',{staticClass:"form-group"},[_c('label',{attrs:{"for":"age"}},[_vm._v("Age")]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model.lazy.number",value:(_vm.userData.age),expression:"userData.age",modifiers:{"lazy":true,"number":true}}],staticClass:"form-control",attrs:{"type":"number","id":"age"},domProps:{"value":(_vm.userData.age)},on:{"change":function($event){_vm.$set(_vm.userData, "age", _vm._n($event.target.value))},"blur":function($event){return _vm.$forceUpdate()}}})])])]):_vm._e()]):_vm._e()]),_vm._v(" "),(_vm.isSubmit)?_c('div',{staticClass:"row"},[_c('div',{staticClass:"col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3"},[_c('div',{staticClass:"panel panel-default"},[_vm._m(1),_vm._v(" "),_c('div',{staticClass:"panel-body"},[_c('p',[_vm._v("Mail: "+_vm._s(_vm.userData.email)+" ")]),_vm._v(" "),_c('p',[_vm._v("Password: "+_vm._s(_vm.userData.password)+" ")]),_vm._v(" "),_c('p',[_vm._v("Age: "+_vm._s(_vm.userData.age)+" ")]),_vm._v(" "),_c('p',{staticStyle:{"white-space":"pre"}},[_vm._v("Message: "+_vm._s(_vm.message))]),_vm._v(" "),_vm._m(2),_vm._v(" "),_c('ul',_vm._l((_vm.sendMail),function(item,idx){return _c('li',{key:idx},[_vm._v(_vm._s(item))])}),0),_vm._v(" "),_c('p',[_vm._v("Gender: "+_vm._s(_vm.gender))]),_vm._v(" "),_c('p',[_vm._v("Priority: "+_vm._s(_vm.selectedPriority))]),_vm._v(" "),_c('p',[_vm._v("Switched: "+_vm._s(_vm.dataSwitch))])])])])]):_vm._e()])}
-var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"row"},[_c('div',{staticClass:"col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3"},[_c('h1',[_vm._v("MM自動點餐設定")])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"panel-heading"},[_c('h4',[_vm._v("Your Data")])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('p',[_c('strong',[_vm._v("Send Mail?")])])}]
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"container"},[_c('form',[_vm._m(0),_vm._v(" "),_c('div',{staticClass:"row"},[_c('div',{staticClass:"col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 form-group"},[_c('label',[_vm._v("是否啟用自動點餐")]),_c('br'),_vm._v(" "),_c('app-switch',{model:{value:(_vm.autoOrder),callback:function ($$v) {_vm.autoOrder=$$v},expression:"autoOrder"}})],1)]),_vm._v(" "),(_vm.autoOrder)?_c('div',[_c('div',{staticClass:"row"},[_c('div',{staticClass:"col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 form-group"},[_c('label',[_vm._v("自動點餐時間")]),_c('br'),_vm._v(" "),_c('label',{attrs:{"for":"male"}},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.autoTime),expression:"autoTime"}],attrs:{"type":"radio","id":"autoTimeEveryday","value":"everyday"},domProps:{"checked":_vm._q(_vm.autoTime,"everyday")},on:{"change":function($event){_vm.autoTime="everyday"}}}),_vm._v(" 每天\n                    ")]),_vm._v(" "),_c('label',{attrs:{"for":"female"}},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.autoTime),expression:"autoTime"}],attrs:{"type":"radio","id":"autoTimeCustom","value":"custom"},domProps:{"checked":_vm._q(_vm.autoTime,"custom")},on:{"change":function($event){_vm.autoTime="custom"}}}),_vm._v(" 自選\n                    ")])])]),_vm._v(" "),(_vm.autoTime === 'custom')?_c('div',{staticClass:"row"},[_c('div',{staticClass:"col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3"},[_c('div',{staticClass:"form-group"},[_c('label',{attrs:{"for":"mon"}},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.autoDays),expression:"autoDays"}],attrs:{"type":"checkbox","id":"mon","value":"mon"},domProps:{"checked":Array.isArray(_vm.autoDays)?_vm._i(_vm.autoDays,"mon")>-1:(_vm.autoDays)},on:{"change":function($event){var $$a=_vm.autoDays,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v="mon",$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.autoDays=$$a.concat([$$v]))}else{$$i>-1&&(_vm.autoDays=$$a.slice(0,$$i).concat($$a.slice($$i+1)))}}else{_vm.autoDays=$$c}}}}),_vm._v(" Mon\n                        ")]),_vm._v(" "),_c('label',{attrs:{"for":"tue"}},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.autoDays),expression:"autoDays"}],attrs:{"type":"checkbox","id":"tue","value":"tue"},domProps:{"checked":Array.isArray(_vm.autoDays)?_vm._i(_vm.autoDays,"tue")>-1:(_vm.autoDays)},on:{"change":function($event){var $$a=_vm.autoDays,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v="tue",$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.autoDays=$$a.concat([$$v]))}else{$$i>-1&&(_vm.autoDays=$$a.slice(0,$$i).concat($$a.slice($$i+1)))}}else{_vm.autoDays=$$c}}}}),_vm._v(" Tue\n                        ")]),_vm._v(" "),_c('label',{attrs:{"for":"wed"}},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.autoDays),expression:"autoDays"}],attrs:{"type":"checkbox","id":"wed","value":"wed"},domProps:{"checked":Array.isArray(_vm.autoDays)?_vm._i(_vm.autoDays,"wed")>-1:(_vm.autoDays)},on:{"change":function($event){var $$a=_vm.autoDays,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v="wed",$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.autoDays=$$a.concat([$$v]))}else{$$i>-1&&(_vm.autoDays=$$a.slice(0,$$i).concat($$a.slice($$i+1)))}}else{_vm.autoDays=$$c}}}}),_vm._v(" Wed\n                        ")]),_vm._v(" "),_c('label',{attrs:{"for":"thu"}},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.autoDays),expression:"autoDays"}],attrs:{"type":"checkbox","id":"thu","value":"thu"},domProps:{"checked":Array.isArray(_vm.autoDays)?_vm._i(_vm.autoDays,"thu")>-1:(_vm.autoDays)},on:{"change":function($event){var $$a=_vm.autoDays,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v="thu",$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.autoDays=$$a.concat([$$v]))}else{$$i>-1&&(_vm.autoDays=$$a.slice(0,$$i).concat($$a.slice($$i+1)))}}else{_vm.autoDays=$$c}}}}),_vm._v(" Thu\n                        ")]),_vm._v(" "),_c('label',{attrs:{"for":"fri"}},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.autoDays),expression:"autoDays"}],attrs:{"type":"checkbox","id":"fri","value":"fri"},domProps:{"checked":Array.isArray(_vm.autoDays)?_vm._i(_vm.autoDays,"fri")>-1:(_vm.autoDays)},on:{"change":function($event){var $$a=_vm.autoDays,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v="fri",$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.autoDays=$$a.concat([$$v]))}else{$$i>-1&&(_vm.autoDays=$$a.slice(0,$$i).concat($$a.slice($$i+1)))}}else{_vm.autoDays=$$c}}}}),_vm._v(" Fri\n                        ")])])])]):_vm._e(),_vm._v(" "),_c('div',{staticClass:"row"},[_c('div',{staticClass:"col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 form-group"},[_c('label',{attrs:{"for":"message"}},[_vm._v("意見回饋")]),_c('br'),_vm._v(" "),_c('textarea',{directives:[{name:"model",rawName:"v-model",value:(_vm.message),expression:"message"}],staticClass:"form-control",attrs:{"id":"message","rows":"5"},domProps:{"value":(_vm.message)},on:{"input":function($event){if($event.target.composing){ return; }_vm.message=$event.target.value}}})])]),_vm._v(" "),_c('div',{staticClass:"row"},[_c('div',{staticClass:"col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3"},[_c('button',{staticClass:"btn btn-primary",on:{"click":function($event){$event.preventDefault();return _vm.submitted.apply(null, arguments)}}},[_vm._v("儲存設定\n                        ")]),_vm._v(" "),_c('button',{staticClass:"btn btn-warning",on:{"click":function($event){$event.preventDefault();return _vm.reset.apply(null, arguments)}}},[_vm._v("重新設定\n                        ")])])])]):_vm._e()])])}
+var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"row"},[_c('div',{staticClass:"col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3"},[_c('h1',[_vm._v("MM自動點餐設定")])])])}]
 var esExports = { render: render, staticRenderFns: staticRenderFns }
 /* harmony default export */ __webpack_exports__["a"] = (esExports);
 
