@@ -609,7 +609,6 @@ module.exports = function normalizeComponent (
 //
 //
 //
-//
 
 
 
@@ -622,7 +621,7 @@ module.exports = function normalizeComponent (
             autoDays: config && config.autoDays || [], //checkbox必須要用 array 去接它，Vue會自動記錄已勾選的值
             whenWfh: config && config.whenWfh || 'mmWarning',
             autoMode: config && config.autoMode || '最多人點',
-            autoModes: ['最多人點', '跟上次一樣', '隨機選取', '懶人模式?'],
+            autoModes: ['最多人點的', '跟上次一樣的', '跟上次不一樣的', '最便宜的', '最昂貴的', '隨機選取', '懶人模式?'],
             message: '海南雞飯讚啦!'
         };
     },
@@ -13100,7 +13099,7 @@ process.umask = function() { return 0; };
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_App_vue__ = __webpack_require__(4);
 /* unused harmony namespace reexport */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_78f050fd_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_App_vue__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_34ea3bfe_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_App_vue__ = __webpack_require__(19);
 function injectStyle (ssrContext) {
   __webpack_require__(12)
 }
@@ -13120,7 +13119,7 @@ var __vue_scopeId__ = null
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_App_vue__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_78f050fd_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_App_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_34ea3bfe_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_App_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
@@ -13141,7 +13140,7 @@ var content = __webpack_require__(13);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(2)("279b2481", content, true, {});
+var update = __webpack_require__(2)("ae88fa4c", content, true, {});
 
 /***/ }),
 /* 13 */
