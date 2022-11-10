@@ -70,6 +70,18 @@
                         </select>
                     </div>
                 </div>
+                <div class="row" v-if="autoMode === '我要自己訂預算'">
+                    <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+                        <div class="form-group">
+                            <!-- 此處的modifier: number 會強制將資料轉換成 number -->
+                            <label for="lowLimit">價格下限</label>
+                            <input type="number" id="lowLimit" class="form-control" v-model.number="lowLimit">
+                            <label for="highLimit">價格上限</label>
+                            <input type="number" id="highLimit" class="form-control" v-model.number="highLimit">
+                        </div>
+
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 form-group">
                         <label for="message">意見回饋</label><br>
@@ -95,6 +107,15 @@
 <script>
 import Switch from "./Switch.vue";
 
+
+// 最多人點的 => 熱門餐點!
+// 最便宜的 => 拮据點餐
+// 最昂貴的 => 奢華套餐
+// 評價最高的 => 人人推薦!
+// 跟上次一樣的 => 老樣子!
+// 跟上次不一樣的 => 換換口味!
+// 隨機選取 => 給我點驚喜 ~
+
 export default {
     data: function () {
         const config = JSON.parse(localStorage.getItem('config'));
@@ -104,8 +125,10 @@ export default {
             autoDays: config && config.autoDays || [], //checkbox必須要用 array 去接它，Vue會自動記錄已勾選的值
             whenWfh: config && config.whenWfh || 'mmWarning',
             autoMode: config && config.autoMode || '最多人點',
-            autoModes: ['最多人點的', '跟上次一樣的', '跟上次不一樣的', '最便宜的', '最昂貴的', '隨機選取', '懶人模式?'],
-            message: '海南雞飯讚啦!',
+            autoModes: ['熱門餐點!', '拮据點餐', '奢華套餐', '人人推薦!', '老樣子!', '換換口味!', '給我點驚喜 ~', '我要自己訂預算'],
+            lowLimit: config && config.lowLimit || 0,
+            highLimit: config && config.highLimit || 150,
+            message: config && config.message || '海南雞飯讚啦!',
         }
     },
     methods: {
@@ -122,7 +145,7 @@ export default {
         reset: function () {
             this.autoTime = 'everyday';
             this.autoDays = [];
-            this.autoMode = '最多人點';
+            this.autoMode = '熱門餐點!';
             this.whenWfh = 'mmWarning';
         }
     },
