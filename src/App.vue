@@ -17,10 +17,10 @@
                     <!-- 對 Radio button而言，只要你用 v-model綁定到同一個 data上，Vue會自動幫你把同一個 v-model的 radio視為同一個 group處理掉，不需要像傳統html要自己設定 name -->
                     <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 form-group">
                         <label>自動點餐時間</label><br>
-                        <label for="male">
+                        <label for="autoTimeEveryday">
                             <input type="radio" id="autoTimeEveryday" value="everyday" v-model="autoTime"> 每天
                         </label>
-                        <label for="female">
+                        <label for="autoTimeCustom">
                             <input type="radio" id="autoTimeCustom" value="custom" v-model="autoTime"> 自選
                         </label>
                     </div>
@@ -28,6 +28,7 @@
                 <div class="row" v-if="autoTime === 'custom'">
                     <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
                         <div class="form-group">
+                            <label>一星期中的哪幾天</label><br>
                             <label for="mon">
                                 <input type="checkbox" id="mon" value="mon" v-model="autoDays"> Mon
                             </label>
@@ -45,6 +46,29 @@
                             </label>
                         </div>
 
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 form-group">
+                        <label>點餐日剛好遇到在家工作</label><br>
+                        <label for="mmWarning">
+                            <input type="radio" id="mmWarning" value="mmWarning" v-model="whenWfh"> MM警示訊息
+                        </label>
+                        <label for="autoCancel">
+                            <input type="radio" id="autoCancel" value="autoCancel" v-model="whenWfh"> 自動取消訂餐
+                        </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 from-group">
+                        <label for="autoMode">自動點餐模式</label>
+                        <select id="autoMode" class="form-control" v-model="autoMode">
+                            <!-- option的預設選項，請使用 v-bind:selected="判斷式"，還記得 v-bind:attribute="判斷式"的用法嗎？ -->
+                            <!-- 但是 option 中的預設值會被 select 中的雙向綁定值給覆蓋掉！合理！直覺！ -->
+                            <option v-for="(mode, index) in autoModes" :key="index"
+                                :selected="mode == '最多人點'">
+                                {{ mode }} </option>
+                        </select>
                     </div>
                 </div>
                 <div class="row">
@@ -79,6 +103,9 @@ export default {
             autoOrder: config && config.autoOrder || false, // 自製開關 component
             autoTime: config && config.autoTime || 'everyday',
             autoDays: config && config.autoDays || [], //checkbox必須要用 array 去接它，Vue會自動記錄已勾選的值
+            whenWfh: config && config.whenWfh || 'mmWarning',
+            autoMode: config && config.autoMode || '最多人點',
+            autoModes: ['最多人點', '跟上次一樣', '隨機選取', '懶人模式?'], 
             message: '海南雞飯讚啦!',
         }
     },
@@ -88,12 +115,16 @@ export default {
                 autoOrder: this.autoOrder,
                 autoTime: this.autoTime,
                 autoDays: this.autoDays,
+                autoMode: this.autoMode,
+                whenWfh: this.whenWfh,
             };
             localStorage.setItem('config', JSON.stringify(config));
         },
         reset: function () {
             this.autoTime = 'everyday';
             this.autoDays = [];
+            this.autoMode = '最多人點';
+            this.whenWfh = 'mmWarning';
         }
     },
     components: {
