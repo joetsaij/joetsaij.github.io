@@ -65,8 +65,7 @@
                         <select id="autoMode" class="form-control" v-model="autoMode">
                             <!-- option的預設選項，請使用 v-bind:selected="判斷式"，還記得 v-bind:attribute="判斷式"的用法嗎？ -->
                             <!-- 但是 option 中的預設值會被 select 中的雙向綁定值給覆蓋掉！合理！直覺！ -->
-                            <option v-for="(mode, index) in autoModes" :key="index"
-                                :selected="mode == '最多人點'">
+                            <option v-for="(mode, index) in autoModes" :key="index" :selected="mode == '最多人點'">
                                 {{ mode }} </option>
                         </select>
                     </div>
@@ -105,7 +104,7 @@ export default {
             autoDays: config && config.autoDays || [], //checkbox必須要用 array 去接它，Vue會自動記錄已勾選的值
             whenWfh: config && config.whenWfh || 'mmWarning',
             autoMode: config && config.autoMode || '最多人點',
-            autoModes: ['最多人點', '跟上次一樣', '隨機選取', '懶人模式?'], 
+            autoModes: ['最多人點的', '跟上次一樣的', '跟上次不一樣的', '最便宜的', '最昂貴的', '隨機選取', '懶人模式?'],
             message: '海南雞飯讚啦!',
         }
     },
