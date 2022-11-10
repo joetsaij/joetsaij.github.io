@@ -593,12 +593,10 @@ module.exports = function normalizeComponent (
     data: function () {
         const config = JSON.parse(localStorage.getItem('config'));
         return {
-            autoOrder: config.autoOrder || false, // 自製開關 component
-            autoTime: config.autoTime || 'everyday',
-            autoDays: config.autoDays || [], //checkbox必須要用 array 去接它，Vue會自動記錄已勾選的值
-            message: '海南雞飯讚啦!',
-            priorities: ['High', 'Medium', 'Low'], // select options
-            isSubmit: false
+            autoOrder: config && config.autoOrder || false, // 自製開關 component
+            autoTime: config && config.autoTime || 'everyday',
+            autoDays: config && config.autoDays || [], //checkbox必須要用 array 去接它，Vue會自動記錄已勾選的值
+            message: '海南雞飯讚啦!'
         };
     },
     methods: {
@@ -609,13 +607,10 @@ module.exports = function normalizeComponent (
                 autoDays: this.autoDays
             };
             localStorage.setItem('config', JSON.stringify(config));
-            this.isSubmit = true;
         },
         reset: function () {
             this.autoTime = 'everyday';
             this.autoDays = [];
-
-            this.isSubmit = false;
         }
     },
     components: {
@@ -13074,7 +13069,7 @@ process.umask = function() { return 0; };
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_App_vue__ = __webpack_require__(4);
 /* unused harmony namespace reexport */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_59f20ff1_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_App_vue__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_3912c353_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_App_vue__ = __webpack_require__(19);
 function injectStyle (ssrContext) {
   __webpack_require__(12)
 }
@@ -13094,7 +13089,7 @@ var __vue_scopeId__ = null
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_App_vue__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_59f20ff1_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_App_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_3912c353_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_App_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
@@ -13115,7 +13110,7 @@ var content = __webpack_require__(13);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(2)("7ad2e1f4", content, true, {});
+var update = __webpack_require__(2)("834128e0", content, true, {});
 
 /***/ }),
 /* 13 */
