@@ -3,7 +3,7 @@
         <form>
             <div class="row">
                 <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-                    <h1>File a Complaint</h1>
+                    <h1>MM自動點餐設定</h1>
                     <hr>
                     <div class="form-group">
                         <label for="email">Mail</label>
@@ -113,7 +113,6 @@
                     <app-switch v-model="dataSwitch"></app-switch>
                 </div>
             </div>
-            <hr>
             <div class="row">
                 <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
                     <button
@@ -129,7 +128,6 @@
                 </div>
             </div>
         </form>
-        <hr>
         <div class="row" v-if="isSubmit">
             <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
                 <div class="panel panel-default">
