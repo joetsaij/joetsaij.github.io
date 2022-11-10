@@ -586,6 +586,30 @@ module.exports = function normalizeComponent (
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -596,6 +620,9 @@ module.exports = function normalizeComponent (
             autoOrder: config && config.autoOrder || false, // 自製開關 component
             autoTime: config && config.autoTime || 'everyday',
             autoDays: config && config.autoDays || [], //checkbox必須要用 array 去接它，Vue會自動記錄已勾選的值
+            whenWfh: config && config.whenWfh || 'mmWarning',
+            autoMode: config && config.autoMode || '最多人點',
+            autoModes: ['最多人點', '跟上次一樣', '隨機選取', '懶人模式?'],
             message: '海南雞飯讚啦!'
         };
     },
@@ -604,13 +631,17 @@ module.exports = function normalizeComponent (
             const config = {
                 autoOrder: this.autoOrder,
                 autoTime: this.autoTime,
-                autoDays: this.autoDays
+                autoDays: this.autoDays,
+                autoMode: this.autoMode,
+                whenWfh: this.whenWfh
             };
             localStorage.setItem('config', JSON.stringify(config));
         },
         reset: function () {
             this.autoTime = 'everyday';
             this.autoDays = [];
+            this.autoMode = '最多人點';
+            this.whenWfh = 'mmWarning';
         }
     },
     components: {
@@ -13069,7 +13100,7 @@ process.umask = function() { return 0; };
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_App_vue__ = __webpack_require__(4);
 /* unused harmony namespace reexport */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_3912c353_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_App_vue__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_78f050fd_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_App_vue__ = __webpack_require__(19);
 function injectStyle (ssrContext) {
   __webpack_require__(12)
 }
@@ -13089,7 +13120,7 @@ var __vue_scopeId__ = null
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_App_vue__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_3912c353_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_App_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_78f050fd_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_App_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
@@ -13110,7 +13141,7 @@ var content = __webpack_require__(13);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(2)("834128e0", content, true, {});
+var update = __webpack_require__(2)("279b2481", content, true, {});
 
 /***/ }),
 /* 13 */
@@ -13238,7 +13269,7 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"container"},[_c('form',[_vm._m(0),_vm._v(" "),_c('div',{staticClass:"row"},[_c('div',{staticClass:"col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 form-group"},[_c('label',[_vm._v("是否啟用自動點餐")]),_c('br'),_vm._v(" "),_c('app-switch',{model:{value:(_vm.autoOrder),callback:function ($$v) {_vm.autoOrder=$$v},expression:"autoOrder"}})],1)]),_vm._v(" "),(_vm.autoOrder)?_c('div',[_c('div',{staticClass:"row"},[_c('div',{staticClass:"col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 form-group"},[_c('label',[_vm._v("自動點餐時間")]),_c('br'),_vm._v(" "),_c('label',{attrs:{"for":"male"}},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.autoTime),expression:"autoTime"}],attrs:{"type":"radio","id":"autoTimeEveryday","value":"everyday"},domProps:{"checked":_vm._q(_vm.autoTime,"everyday")},on:{"change":function($event){_vm.autoTime="everyday"}}}),_vm._v(" 每天\n                    ")]),_vm._v(" "),_c('label',{attrs:{"for":"female"}},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.autoTime),expression:"autoTime"}],attrs:{"type":"radio","id":"autoTimeCustom","value":"custom"},domProps:{"checked":_vm._q(_vm.autoTime,"custom")},on:{"change":function($event){_vm.autoTime="custom"}}}),_vm._v(" 自選\n                    ")])])]),_vm._v(" "),(_vm.autoTime === 'custom')?_c('div',{staticClass:"row"},[_c('div',{staticClass:"col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3"},[_c('div',{staticClass:"form-group"},[_c('label',{attrs:{"for":"mon"}},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.autoDays),expression:"autoDays"}],attrs:{"type":"checkbox","id":"mon","value":"mon"},domProps:{"checked":Array.isArray(_vm.autoDays)?_vm._i(_vm.autoDays,"mon")>-1:(_vm.autoDays)},on:{"change":function($event){var $$a=_vm.autoDays,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v="mon",$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.autoDays=$$a.concat([$$v]))}else{$$i>-1&&(_vm.autoDays=$$a.slice(0,$$i).concat($$a.slice($$i+1)))}}else{_vm.autoDays=$$c}}}}),_vm._v(" Mon\n                        ")]),_vm._v(" "),_c('label',{attrs:{"for":"tue"}},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.autoDays),expression:"autoDays"}],attrs:{"type":"checkbox","id":"tue","value":"tue"},domProps:{"checked":Array.isArray(_vm.autoDays)?_vm._i(_vm.autoDays,"tue")>-1:(_vm.autoDays)},on:{"change":function($event){var $$a=_vm.autoDays,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v="tue",$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.autoDays=$$a.concat([$$v]))}else{$$i>-1&&(_vm.autoDays=$$a.slice(0,$$i).concat($$a.slice($$i+1)))}}else{_vm.autoDays=$$c}}}}),_vm._v(" Tue\n                        ")]),_vm._v(" "),_c('label',{attrs:{"for":"wed"}},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.autoDays),expression:"autoDays"}],attrs:{"type":"checkbox","id":"wed","value":"wed"},domProps:{"checked":Array.isArray(_vm.autoDays)?_vm._i(_vm.autoDays,"wed")>-1:(_vm.autoDays)},on:{"change":function($event){var $$a=_vm.autoDays,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v="wed",$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.autoDays=$$a.concat([$$v]))}else{$$i>-1&&(_vm.autoDays=$$a.slice(0,$$i).concat($$a.slice($$i+1)))}}else{_vm.autoDays=$$c}}}}),_vm._v(" Wed\n                        ")]),_vm._v(" "),_c('label',{attrs:{"for":"thu"}},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.autoDays),expression:"autoDays"}],attrs:{"type":"checkbox","id":"thu","value":"thu"},domProps:{"checked":Array.isArray(_vm.autoDays)?_vm._i(_vm.autoDays,"thu")>-1:(_vm.autoDays)},on:{"change":function($event){var $$a=_vm.autoDays,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v="thu",$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.autoDays=$$a.concat([$$v]))}else{$$i>-1&&(_vm.autoDays=$$a.slice(0,$$i).concat($$a.slice($$i+1)))}}else{_vm.autoDays=$$c}}}}),_vm._v(" Thu\n                        ")]),_vm._v(" "),_c('label',{attrs:{"for":"fri"}},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.autoDays),expression:"autoDays"}],attrs:{"type":"checkbox","id":"fri","value":"fri"},domProps:{"checked":Array.isArray(_vm.autoDays)?_vm._i(_vm.autoDays,"fri")>-1:(_vm.autoDays)},on:{"change":function($event){var $$a=_vm.autoDays,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v="fri",$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.autoDays=$$a.concat([$$v]))}else{$$i>-1&&(_vm.autoDays=$$a.slice(0,$$i).concat($$a.slice($$i+1)))}}else{_vm.autoDays=$$c}}}}),_vm._v(" Fri\n                        ")])])])]):_vm._e(),_vm._v(" "),_c('div',{staticClass:"row"},[_c('div',{staticClass:"col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 form-group"},[_c('label',{attrs:{"for":"message"}},[_vm._v("意見回饋")]),_c('br'),_vm._v(" "),_c('textarea',{directives:[{name:"model",rawName:"v-model",value:(_vm.message),expression:"message"}],staticClass:"form-control",attrs:{"id":"message","rows":"5"},domProps:{"value":(_vm.message)},on:{"input":function($event){if($event.target.composing){ return; }_vm.message=$event.target.value}}})])]),_vm._v(" "),_c('div',{staticClass:"row"},[_c('div',{staticClass:"col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3"},[_c('button',{staticClass:"btn btn-primary",on:{"click":function($event){$event.preventDefault();return _vm.submitted.apply(null, arguments)}}},[_vm._v("儲存設定\n                        ")]),_vm._v(" "),_c('button',{staticClass:"btn btn-warning",on:{"click":function($event){$event.preventDefault();return _vm.reset.apply(null, arguments)}}},[_vm._v("重新設定\n                        ")])])])]):_vm._e()])])}
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"container"},[_c('form',[_vm._m(0),_vm._v(" "),_c('div',{staticClass:"row"},[_c('div',{staticClass:"col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 form-group"},[_c('label',[_vm._v("是否啟用自動點餐")]),_c('br'),_vm._v(" "),_c('app-switch',{model:{value:(_vm.autoOrder),callback:function ($$v) {_vm.autoOrder=$$v},expression:"autoOrder"}})],1)]),_vm._v(" "),(_vm.autoOrder)?_c('div',[_c('div',{staticClass:"row"},[_c('div',{staticClass:"col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 form-group"},[_c('label',[_vm._v("自動點餐時間")]),_c('br'),_vm._v(" "),_c('label',{attrs:{"for":"autoTimeEveryday"}},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.autoTime),expression:"autoTime"}],attrs:{"type":"radio","id":"autoTimeEveryday","value":"everyday"},domProps:{"checked":_vm._q(_vm.autoTime,"everyday")},on:{"change":function($event){_vm.autoTime="everyday"}}}),_vm._v(" 每天\n                    ")]),_vm._v(" "),_c('label',{attrs:{"for":"autoTimeCustom"}},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.autoTime),expression:"autoTime"}],attrs:{"type":"radio","id":"autoTimeCustom","value":"custom"},domProps:{"checked":_vm._q(_vm.autoTime,"custom")},on:{"change":function($event){_vm.autoTime="custom"}}}),_vm._v(" 自選\n                    ")])])]),_vm._v(" "),(_vm.autoTime === 'custom')?_c('div',{staticClass:"row"},[_c('div',{staticClass:"col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3"},[_c('div',{staticClass:"form-group"},[_c('label',[_vm._v("一星期中的哪幾天")]),_c('br'),_vm._v(" "),_c('label',{attrs:{"for":"mon"}},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.autoDays),expression:"autoDays"}],attrs:{"type":"checkbox","id":"mon","value":"mon"},domProps:{"checked":Array.isArray(_vm.autoDays)?_vm._i(_vm.autoDays,"mon")>-1:(_vm.autoDays)},on:{"change":function($event){var $$a=_vm.autoDays,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v="mon",$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.autoDays=$$a.concat([$$v]))}else{$$i>-1&&(_vm.autoDays=$$a.slice(0,$$i).concat($$a.slice($$i+1)))}}else{_vm.autoDays=$$c}}}}),_vm._v(" Mon\n                        ")]),_vm._v(" "),_c('label',{attrs:{"for":"tue"}},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.autoDays),expression:"autoDays"}],attrs:{"type":"checkbox","id":"tue","value":"tue"},domProps:{"checked":Array.isArray(_vm.autoDays)?_vm._i(_vm.autoDays,"tue")>-1:(_vm.autoDays)},on:{"change":function($event){var $$a=_vm.autoDays,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v="tue",$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.autoDays=$$a.concat([$$v]))}else{$$i>-1&&(_vm.autoDays=$$a.slice(0,$$i).concat($$a.slice($$i+1)))}}else{_vm.autoDays=$$c}}}}),_vm._v(" Tue\n                        ")]),_vm._v(" "),_c('label',{attrs:{"for":"wed"}},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.autoDays),expression:"autoDays"}],attrs:{"type":"checkbox","id":"wed","value":"wed"},domProps:{"checked":Array.isArray(_vm.autoDays)?_vm._i(_vm.autoDays,"wed")>-1:(_vm.autoDays)},on:{"change":function($event){var $$a=_vm.autoDays,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v="wed",$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.autoDays=$$a.concat([$$v]))}else{$$i>-1&&(_vm.autoDays=$$a.slice(0,$$i).concat($$a.slice($$i+1)))}}else{_vm.autoDays=$$c}}}}),_vm._v(" Wed\n                        ")]),_vm._v(" "),_c('label',{attrs:{"for":"thu"}},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.autoDays),expression:"autoDays"}],attrs:{"type":"checkbox","id":"thu","value":"thu"},domProps:{"checked":Array.isArray(_vm.autoDays)?_vm._i(_vm.autoDays,"thu")>-1:(_vm.autoDays)},on:{"change":function($event){var $$a=_vm.autoDays,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v="thu",$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.autoDays=$$a.concat([$$v]))}else{$$i>-1&&(_vm.autoDays=$$a.slice(0,$$i).concat($$a.slice($$i+1)))}}else{_vm.autoDays=$$c}}}}),_vm._v(" Thu\n                        ")]),_vm._v(" "),_c('label',{attrs:{"for":"fri"}},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.autoDays),expression:"autoDays"}],attrs:{"type":"checkbox","id":"fri","value":"fri"},domProps:{"checked":Array.isArray(_vm.autoDays)?_vm._i(_vm.autoDays,"fri")>-1:(_vm.autoDays)},on:{"change":function($event){var $$a=_vm.autoDays,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v="fri",$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.autoDays=$$a.concat([$$v]))}else{$$i>-1&&(_vm.autoDays=$$a.slice(0,$$i).concat($$a.slice($$i+1)))}}else{_vm.autoDays=$$c}}}}),_vm._v(" Fri\n                        ")])])])]):_vm._e(),_vm._v(" "),_c('div',{staticClass:"row"},[_c('div',{staticClass:"col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 form-group"},[_c('label',[_vm._v("點餐日剛好遇到在家工作")]),_c('br'),_vm._v(" "),_c('label',{attrs:{"for":"mmWarning"}},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.whenWfh),expression:"whenWfh"}],attrs:{"type":"radio","id":"mmWarning","value":"mmWarning"},domProps:{"checked":_vm._q(_vm.whenWfh,"mmWarning")},on:{"change":function($event){_vm.whenWfh="mmWarning"}}}),_vm._v(" MM警示訊息\n                    ")]),_vm._v(" "),_c('label',{attrs:{"for":"autoCancel"}},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.whenWfh),expression:"whenWfh"}],attrs:{"type":"radio","id":"autoCancel","value":"autoCancel"},domProps:{"checked":_vm._q(_vm.whenWfh,"autoCancel")},on:{"change":function($event){_vm.whenWfh="autoCancel"}}}),_vm._v(" 自動取消訂餐\n                    ")])])]),_vm._v(" "),_c('div',{staticClass:"row"},[_c('div',{staticClass:"col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 from-group"},[_c('label',{attrs:{"for":"autoMode"}},[_vm._v("自動點餐模式")]),_vm._v(" "),_c('select',{directives:[{name:"model",rawName:"v-model",value:(_vm.autoMode),expression:"autoMode"}],staticClass:"form-control",attrs:{"id":"autoMode"},on:{"change":function($event){var $$selectedVal = Array.prototype.filter.call($event.target.options,function(o){return o.selected}).map(function(o){var val = "_value" in o ? o._value : o.value;return val}); _vm.autoMode=$event.target.multiple ? $$selectedVal : $$selectedVal[0]}}},_vm._l((_vm.autoModes),function(mode,index){return _c('option',{key:index,domProps:{"selected":mode == '最多人點'}},[_vm._v("\n                            "+_vm._s(mode)+" ")])}),0)])]),_vm._v(" "),_c('div',{staticClass:"row"},[_c('div',{staticClass:"col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 form-group"},[_c('label',{attrs:{"for":"message"}},[_vm._v("意見回饋")]),_c('br'),_vm._v(" "),_c('textarea',{directives:[{name:"model",rawName:"v-model",value:(_vm.message),expression:"message"}],staticClass:"form-control",attrs:{"id":"message","rows":"5"},domProps:{"value":(_vm.message)},on:{"input":function($event){if($event.target.composing){ return; }_vm.message=$event.target.value}}})])]),_vm._v(" "),_c('div',{staticClass:"row"},[_c('div',{staticClass:"col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3"},[_c('button',{staticClass:"btn btn-primary",on:{"click":function($event){$event.preventDefault();return _vm.submitted.apply(null, arguments)}}},[_vm._v("儲存設定\n                        ")]),_vm._v(" "),_c('button',{staticClass:"btn btn-warning",on:{"click":function($event){$event.preventDefault();return _vm.reset.apply(null, arguments)}}},[_vm._v("重新設定\n                        ")])])])]):_vm._e()])])}
 var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"row"},[_c('div',{staticClass:"col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3"},[_c('h1',[_vm._v("MM自動點餐設定")])])])}]
 var esExports = { render: render, staticRenderFns: staticRenderFns }
 /* harmony default export */ __webpack_exports__["a"] = (esExports);
