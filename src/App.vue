@@ -129,6 +129,45 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 form-group">
+                        <label>是否啟用店家點餐設定</label><br>
+                        <app-switch v-model="storeConfig"></app-switch>
+                    </div>
+                </div>
+                <div class="row bottom-space" v-if="storeConfig">
+                    <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 from-group">
+                        <label>如遇到下列店家，點餐將以此設定為主(最優先選擇)</label>
+                        <div>
+                            <label>店家</label>
+                            <select class="form-control" v-model="selectedStore" v-on:change="onSelectStore()">
+                                <option v-for="(store, id) in stores" :key="id" :value="store">
+                                    {{ store.value }} </option>
+                            </select>
+                        </div>
+                        <div class="bottom-space">
+                            <label>餐點</label>
+                            <select class="form-control" v-if="selectedStore" v-model="selectedDish">
+                                <option v-for="(dish, id) in dishByStore" :key="id" :value="dish">
+                                    {{ dish }} </option>
+                            </select>
+                        </div>
+                        <button class="btn btn-primary" @click.prevent="addStoreDish">新增店家餐點
+                        </button>
+                    </div>
+                </div>
+                <div class="row" v-if="storeConfig">
+                    <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 from-group">
+                        <ul>
+                            <li v-for="sd in storeDishes">{{ sd.store }} - {{ sd.dish }}</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 from-group">
+                        <div class="divider"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 form-group">
                         <label for="message">意見回饋</label><br>
                         <!-- Interpolation between <textarea>{{ test }}</textarea> doesn't work!-->
                         <textarea id="message" rows="3" class="form-control" v-model="message"></textarea>
@@ -176,10 +215,27 @@ export default {
             whenWfh: config && config.whenWfh || 'mmWarning',
             lowLimit: config && config.lowLimit || 0,
             highLimit: config && config.highLimit || 150,
+            storeConfig: config && config.storeConfig || false,
+            stores: getStores(),
+            selectedStore: {},
+            selectedDish: '',
+            dishByStore: [],
+            storeDishes: config && config.storeDishes || [],
             message: '',
         }
     },
     methods: {
+        onSelectStore: function () {
+            this.dishByStore = getDishByStore()[this.selectedStore.id];
+            // debugger;
+        },
+        addStoreDish: function () {
+            this.storeDishes.push({
+                store: this.selectedStore.value,
+                dish: this.selectedDish,
+            });
+            // debugger;
+        },
         submitted: function () {
             const config = {
                 autoOrder: this.autoOrder,
@@ -190,6 +246,9 @@ export default {
                 budgetPrefer: this.budgetPrefer,
                 budgetOver: this.budgetOver,
                 budgetOptions: this.budgetOptions,
+                storeConfig: this.storeConfig,
+                dishByStore: this.dishByStore,
+                storeDishes: this.storeDishes,
             };
             localStorage.setItem('config', JSON.stringify(config));
             this.message = '';
@@ -209,6 +268,7 @@ export default {
             this.budgetPrefer = 'popular';
             this.budgetOver = 'none';
             this.budgetOptions = ['noSideDish'];
+            this.storeConfig = false;
 
             this.$toast.open({
                 message: "回到預設值",
@@ -234,6 +294,20 @@ function getAutoModes() {
         { value: '給我點驚喜!?', title: '隨機訂餐' },
         { value: '我要自己訂預算$$', title: '自行設定預算上下限' },
     ];
+}
+function getStores() {
+    return [
+        { value: '麥當勞', id: 'mc' },
+        { value: '海南雞', id: 'hng' },
+        { value: '小南排骨便當', id: 'sn' },
+    ];
+}
+function getDishByStore() {
+    return {
+        mc: ['大麥克', '勁辣雞腿堡', '雙層牛肉吉士堡'],
+        hng: ['海南雞飯', '海南雞腿麵', '綠咖哩雞腿飯'],
+        sn: ['排骨便當', '雞腿便當'],
+    }
 }
 </script>
 
