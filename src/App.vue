@@ -94,7 +94,7 @@
                         <button class="btn btn-primary" @click.prevent="submitted">儲存設定
                             <!-- 用 prevent 是不希望點了按鈕後真的送出表單，而是希望交由 vue 去處理事件 -->
                         </button>
-                        <button class="btn btn-warning" @click.prevent="reset">重新設定
+                        <button class="btn btn-warning" @click.prevent="reset">回到預設
                             <!-- 用 prevent 是不希望點了按鈕後真的送出表單，而是希望交由 vue 去處理事件 -->
                         </button>
                     </div>
@@ -141,12 +141,27 @@ export default {
                 whenWfh: this.whenWfh,
             };
             localStorage.setItem('config', JSON.stringify(config));
+            this.$toast.open({
+                message: "設定儲存成功",
+                type: "success",
+                duration: 2000,
+                dismissible: true,
+                position: 'top',
+            });
         },
         reset: function () {
             this.autoTime = 'everyday';
             this.autoDays = [];
             this.autoMode = '熱門餐點!';
             this.whenWfh = 'mmWarning';
+
+            this.$toast.open({
+                message: "回到預設值",
+                type: "info",
+                duration: 2000,
+                dismissible: true,
+                position: 'top',
+            });
         }
     },
     components: {
