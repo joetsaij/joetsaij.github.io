@@ -3,7 +3,7 @@
         <form>
             <div class="row">
                 <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-                    <img src="./assets/mmlogo.png" alt="" width="150px">
+                    <!-- <img vsrc src="./assets/mmlogo.png" alt="" width="150px"> -->
                     <h2>MM自動點餐設定</h2>
                 </div>
             </div>
