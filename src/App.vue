@@ -3,7 +3,8 @@
         <form>
             <div class="row">
                 <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-                    <h1>MM自動點餐設定</h1>
+                    <img src="./assets/mmlogo.png" alt="" width="150px">
+                    <h2>MM自動點餐設定</h2>
                 </div>
             </div>
             <div class="row">
@@ -243,6 +244,8 @@ export default {
                 autoDays: this.autoDays,
                 autoMode: this.autoMode,
                 whenWfh: this.whenWfh,
+                lowLimit: this.lowLimit,
+                highLimit: this.highLimit,
                 budgetPrefer: this.budgetPrefer,
                 budgetOver: this.budgetOver,
                 budgetOptions: this.budgetOptions,
@@ -269,6 +272,7 @@ export default {
             this.budgetOver = 'none';
             this.budgetOptions = ['noSideDish'];
             this.storeConfig = false;
+            this.storeDishes = [];
 
             this.$toast.open({
                 message: "回到預設值",
