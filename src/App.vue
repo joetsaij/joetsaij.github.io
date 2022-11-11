@@ -7,12 +7,76 @@
                 </div>
             </div>
             <div class="row">
+                <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 from-group">
+                    <div class="divider"></div>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 form-group">
                     <label>是否啟用自動點餐</label><br>
                     <app-switch v-model="autoOrder"></app-switch>
                 </div>
             </div>
             <div v-if="autoOrder">
+                <div class="row bottom-space">
+                    <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 from-group">
+                        <label for="autoMode">自動點餐模式</label>
+                        <select id="autoMode" class="form-control" v-model="autoMode">
+                            <!-- option的預設選項，請使用 v-bind:selected="判斷式"，還記得 v-bind:attribute="判斷式"的用法嗎？ -->
+                            <!-- 但是 option 中的預設值會被 select 中的雙向綁定值給覆蓋掉！合理！直覺！ -->
+                            <option v-for="(mode, index) in autoModes" :key="index" :selected="mode.value == '熱門餐點!'"
+                                :title="mode.title">
+                                {{ mode.value }} </option>
+                        </select>
+                        <!-- <label for="autoMode">{{mode.title}}</label> -->
+                    </div>
+                </div>
+                <div class="row" v-if="autoMode === '我要自己訂預算$$'">
+                    <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+                        <div class="form-group">
+                            <!-- 此處的modifier: number 會強制將資料轉換成 number -->
+                            <label for="lowLimit">價格下限</label>
+                            <input type="number" id="lowLimit" class="form-control" v-model.number="lowLimit">
+                            <label for="highLimit">價格上限</label>
+                            <input type="number" id="highLimit" class="form-control" v-model.number="highLimit">
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 form-group">
+                        <label>預算內選擇...</label><br>
+                        <label for="popular">
+                            <input type="radio" id="popular" value="popular" v-model="budgetPrefer"> 最熱門
+                        </label>
+                        <label for="low">
+                            <input type="radio" id="low" value="low" v-model="budgetPrefer"> 最接近下限
+                        </label>
+                        <label for="high">
+                            <input type="radio" id="high" value="high" v-model="budgetPrefer"> 最接近上限
+                        </label>
+                    </div>
+                    <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 form-group">
+                        <label>超出預算時選擇...</label><br>
+                        <label for="none">
+                            <input type="radio" id="none" value="none" v-model="budgetOver"> 不點餐
+                        </label>
+                        <label for="low">
+                            <input type="radio" id="low" value="low" v-model="budgetOver"> 最接近下限
+                        </label>
+                        <label for="high">
+                            <input type="radio" id="high" value="high" v-model="budgetOver"> 最接近上限
+                        </label>
+                    </div>
+                    <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+                        <div class="form-group">
+                            <label>預算模式其他設定</label><br>
+                            <label for="noSideDish">
+                                <input type="checkbox" id="noSideDish" value="noSideDish" v-model="budgetOptions"> 排除小菜
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 from-group">
+                        <div class="divider"></div>
+                    </div>
+                </div>
                 <div class="row">
                     <!-- 對 Radio button而言，只要你用 v-model綁定到同一個 data上，Vue會自動幫你把同一個 v-model的 radio視為同一個 group處理掉，不需要像傳統html要自己設定 name -->
                     <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 form-group">
@@ -45,7 +109,6 @@
                                 <input type="checkbox" id="fri" value="fri" v-model="autoDays"> Fri
                             </label>
                         </div>
-
                     </div>
                 </div>
                 <div class="row">
@@ -61,35 +124,17 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 from-group">
-                        <label for="autoMode">自動點餐模式</label>
-                        <select id="autoMode" class="form-control" v-model="autoMode">
-                            <!-- option的預設選項，請使用 v-bind:selected="判斷式"，還記得 v-bind:attribute="判斷式"的用法嗎？ -->
-                            <!-- 但是 option 中的預設值會被 select 中的雙向綁定值給覆蓋掉！合理！直覺！ -->
-                            <option v-for="(mode, index) in autoModes" :key="index" :selected="mode == '最多人點'">
-                                {{ mode }} </option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row" v-if="autoMode === '我要自己訂預算'">
-                    <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-                        <div class="form-group">
-                            <!-- 此處的modifier: number 會強制將資料轉換成 number -->
-                            <label for="lowLimit">價格下限</label>
-                            <input type="number" id="lowLimit" class="form-control" v-model.number="lowLimit">
-                            <label for="highLimit">價格上限</label>
-                            <input type="number" id="highLimit" class="form-control" v-model.number="highLimit">
-                        </div>
-
+                        <div class="divider"></div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 form-group">
                         <label for="message">意見回饋</label><br>
                         <!-- Interpolation between <textarea>{{ test }}</textarea> doesn't work!-->
-                        <textarea id="message" rows="5" class="form-control" v-model="message"></textarea>
+                        <textarea id="message" rows="3" class="form-control" v-model="message"></textarea>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row bottom-space">
                     <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
                         <button class="btn btn-primary" @click.prevent="submitted">儲存設定
                             <!-- 用 prevent 是不希望點了按鈕後真的送出表單，而是希望交由 vue 去處理事件 -->
@@ -121,14 +166,17 @@ export default {
         const config = JSON.parse(localStorage.getItem('config'));
         return {
             autoOrder: config && config.autoOrder || false, // 自製開關 component
+            autoMode: config && config.autoMode || '熱門餐點!',
+            autoModes: getAutoModes(),
             autoTime: config && config.autoTime || 'everyday',
             autoDays: config && config.autoDays || [], //checkbox必須要用 array 去接它，Vue會自動記錄已勾選的值
+            budgetPrefer: config && config.budgetPrefer || 'popular',
+            budgetOver: config && config.budgetOver || 'none',
+            budgetOptions: config && config.budgetOptions || ['noSideDish'],
             whenWfh: config && config.whenWfh || 'mmWarning',
-            autoMode: config && config.autoMode || '最多人點',
-            autoModes: ['熱門餐點!', '拮据點餐', '奢華套餐', '人人推薦!', '老樣子!', '換換口味!', '給我點驚喜 ~', '我要自己訂預算'],
             lowLimit: config && config.lowLimit || 0,
             highLimit: config && config.highLimit || 150,
-            message: config && config.message || '海南雞飯讚啦!',
+            message: '',
         }
     },
     methods: {
@@ -139,8 +187,12 @@ export default {
                 autoDays: this.autoDays,
                 autoMode: this.autoMode,
                 whenWfh: this.whenWfh,
+                budgetPrefer: this.budgetPrefer,
+                budgetOver: this.budgetOver,
+                budgetOptions: this.budgetOptions,
             };
             localStorage.setItem('config', JSON.stringify(config));
+            this.message = '';
             this.$toast.open({
                 message: "設定儲存成功",
                 type: "success",
@@ -154,6 +206,9 @@ export default {
             this.autoDays = [];
             this.autoMode = '熱門餐點!';
             this.whenWfh = 'mmWarning';
+            this.budgetPrefer = 'popular';
+            this.budgetOver = 'none';
+            this.budgetOptions = ['noSideDish'];
 
             this.$toast.open({
                 message: "回到預設值",
@@ -168,8 +223,28 @@ export default {
         appSwitch: Switch // 也可寫成 'app-switch': Switch
     }
 }
+function getAutoModes() {
+    return [
+        { value: '熱門餐點!', title: '最多人點的' },
+        { value: '拮据點餐', title: '最便宜的' },
+        { value: '奢華套餐', title: '最貴的' },
+        { value: '人人推薦', title: '評價最高的' },
+        { value: '老樣子~', title: '跟上次一樣' },
+        { value: '換換口味', title: '跟上次不一樣' },
+        { value: '給我點驚喜!?', title: '隨機訂餐' },
+        { value: '我要自己訂預算$$', title: '自行設定預算上下限' },
+    ];
+}
 </script>
 
 <style>
+.divider {
+    border-top: 2px solid lightgray;
+    margin-top: 0.5rem;
+    padding-bottom: 3rem;
+}
 
+.bottom-space {
+    margin-bottom: 2rem;
+}
 </style>
